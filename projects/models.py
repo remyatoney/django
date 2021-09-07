@@ -6,6 +6,7 @@ import uuid
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
+    featured_image = models.ImageField(null=True, blank=True, default="no-image.png")
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True) # We are putting Tag in '' as we havent defined the class yet. So we can either define the Tag class before the Project class or put it in ''
