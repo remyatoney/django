@@ -2,28 +2,23 @@
 
 {% block content %}
 
-{{ message }}
-
-{% if number > 10 %}
-    <p>Number is greater than 10</p>
-{% elif number == 10 %}
-    <p>Number is 10</p>
-{% else %}
-    <p>Number is less than 10</p>
-{% endif %}
-
-<hr>
-
-
 <h1>Projects</h1>
-<ul>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Project</th>
+        <th>Votes</th>
+        <th>Ratio</th>
+    </tr>
     {% for project in projects %}
-        <li>Title: <a href="{% url 'project' project.id %}">{{ project.title }} </a> 
-            <!-- 'project' stands for the name given in urls.py So in case the url path changes from projects to projects-list, as long as the name doesnt change, we dont need to edit the templates -->
-            <br>
-            Description: {{ project.description }} 
-        </li>
+        <tr>
+            <td>{{ project.id }}</td>
+            <td>{{ project.title }}</td>
+            <td>{{ project.vote_total }}</td>
+            <td>{{ project.vote_ratio }} %</td>
+            <td><a href="{% url 'project' project.id %}">View</a></td>
+        </tr>
     {% endfor %}
-</ul>
+</table>
 
 {% endblock content %}
